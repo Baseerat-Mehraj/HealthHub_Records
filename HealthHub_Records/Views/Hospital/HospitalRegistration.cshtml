@@ -1,0 +1,113 @@
+﻿@model HealthHub_Records.ViewModels.HospitalRegistrationView
+
+@{
+    ViewData["Title"] = "Index";
+}
+<form method="post" asp-controller="Hospital" asp-action="HospitalRegistration">
+    <section class="h-100 bg-dark">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col">
+                    <div class="card card-registration my-4">
+                        <div class="row g-0">
+                            <div class="col-xl-6 d-none d-xl-block" >
+                                <img src="~/images/6.jpg"
+                                     alt="Sample photo"  class="img-fluid"
+                                     style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem; height: 1050px;" />
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="card-body p-md-5 text-black">
+                                    <h3 class="mb-5 text-uppercase">Hospital Registration Form</h3>
+
+
+                                    <div class="form-outline mb-4">
+                                        <input type="text" id="form3Example8" class="form-control form-control-lg" asp-for="Name" />
+                                        <label class="form-label" for="form3Example8" asp-for="Name">Hospital Name</label>
+                                        <span asp-validation-for="Name" class="text-danger"></span>
+                                    </div>
+
+
+
+                                    <div class="form-outline mb-4">
+                                        <input type="text" id="form3Example8" class="form-control form-control-lg" asp-for="address" />
+                                        <label class="form-label" for="form3Example8" asp-for="address">Address</label>
+                                        <span asp-validation-for="address" class="text-danger"></span>
+                                    </div>
+
+
+
+                                    <div class="row">
+                                        <div class="col-md-6 mb-4">
+
+                                            <input type="text" id="form3Example8" class="form-control form-control-lg" asp-for="state" />
+                                            <label class="form-label" for="form3Example8" asp-for="state">State</label>
+                                        </div>
+                                        <div class="col-md-6 mb-4">
+
+                                            <input type="text" id="form3Example8" class="form-control form-control-lg" asp-for="city" />
+                                            <label class="form-label" for="form3Example8" asp-for="city">City</label>
+
+                                        </div>
+                                    </div>
+
+                                   
+                                    <div class="form-outline mb-4">
+                                        <input type="number" id="form3Example9" class="form-control form-control-lg" asp-for="pincode" />
+                                        <label class="form-label" asp-for="pincode">Pincode</label>
+                                    </div>
+                                    <div class="form-outline mb-4">
+                                        <input type="text" id="form3Example90" class="form-control form-control-lg" asp-for="licienceno" />
+                                        <label class="form-label" asp-for="licienceno">Licience Number</label>
+                                        <span asp-validation-for="licienceno" class="text-danger"></span>
+                                    </div>
+
+
+                                    <div class="form-outline mb-4">
+                                        <input type="number" id="form3Example90" class="form-control form-control-lg" asp-for="phoneno" />
+                                        <label class="form-label" asp-for="phoneno">Phone Number</label>
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        <input type="text" id="form3Example99" class="form-control form-control-lg" asp-for="username" />
+                                        <label class="form-label" asp-for="username">Username</label>
+                                        <span asp-validation-for="username" class="text-danger"></span>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-4">
+
+                                            <input type="password" id="form3Example1m" class="form-control form-control-lg" asp-for="password" />
+                                            <label class="form-label" asp-for="password">Password</label>
+                                            <span asp-validation-for="password" class="text-danger"></span>
+
+                                        </div>
+                                        <div class="col-md-6 mb-4">
+
+                                            <input type="password" id="form3Example1n" class="form-control form-control-lg" asp-for="confirmpassword" />
+                                            <label class="form-label" for="form3Example1n" asp-for="confirmpassword">Confirm Password</label>
+                                            <span asp-validation-for="confirmpassword" class="text-danger"></span>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        <input type="email" id="form3Example97" class="form-control form-control-lg" asp-for="email" />
+                                        <label class="form-label" asp-for="email">Email ID</label>
+                                    </div>
+
+                                    <div class="d-flex justify-content-end pt-3">
+                                        <button type="reset" class="btn btn-light btn-dark">Reset all</button>
+                                        <button type="submit" class="btn btn-warning btn-lg ms-2">Submit form</button>
+                                    </div>
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>

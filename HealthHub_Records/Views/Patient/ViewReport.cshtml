@@ -1,0 +1,45 @@
+﻿@model IEnumerable<HealthHub_Records.Models.Reports>
+
+@{
+
+    Layout = "_PatientLayout";
+    ViewData["Title"] = "ViewReport";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FileName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+           
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FileName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+          
+            <td>
+                <a asp-controller="Patient" asp-action="Download" asp-route-id="@item.userid" class="btn btn-primary">Download</a> 
+               
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
