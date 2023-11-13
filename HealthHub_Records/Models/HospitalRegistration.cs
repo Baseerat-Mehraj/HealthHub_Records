@@ -17,9 +17,9 @@ namespace HealthHub_Records.Models
         public string city { get; set; }
         [Display(Name = "Pincode")]
         public int pincode { get; set; }
-        [Display(Name = "Phone Number")]
+        [Display(Name = "Phone No.")]
         public int phoneno { get; set; }
-        [Display(Name = "Licience Number")]
+        [Display(Name = "Licience No.")]
         public string licienceno { get; set; }
         public int? userid { get; set; }
         [ForeignKey("userid")]

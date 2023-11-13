@@ -19,7 +19,9 @@ namespace HealthHub_Records.Models
 
         public DbSet<Contact> Contacts { get; set; }
 
-        public DbSet<HealthHub_Records.ViewModels.SearchPatientView>? SearchPatientView { get; set; }
+        public DbSet<Appoinment> Appoinment { get; set; }
+
+        public DbSet<MedicalDescription> MedicalDescription { get; set; }
      
     }
 }

@@ -1,0 +1,143 @@
+﻿@model HealthHub_Records.Models.MedicalDescription
+
+@{
+    Layout = "_HospitalLayout";
+    ViewData["Title"] = "MedicalD";
+}
+
+<h4 style="text-align:center;background-color:gray">Medical Description</h4>
+  
+  <div class="row" style="font-size:large">
+    <div class=" col-md-5 " style="color:black">
+        @Html.DisplayNameFor(model => model.Diabetic)
+        <br>@Html.DisplayFor(model => model.Diabetic)
+    </div>
+ 
+    <div class=" col-md-6">
+     @Html.DisplayNameFor(model => model.DDiabetic)
+    <br>@Html.DisplayFor(model => model.DDiabetic)
+    </div>
+   </div>
+   <br>
+
+<div class="row" style="font-size:large">
+    <div class=" col-md-5 " style="color:black">
+            @Html.DisplayNameFor(model => model.BloodPressure)
+            <br>@Html.DisplayFor(model => model.BloodPressure)
+    </div>
+    <div class=" col-md-6">
+        @Html.DisplayNameFor(model => model.DBloodPressure)
+        <br>@Html.DisplayFor(model => model.DBloodPressure)
+    </div>
+</div>
+<br>
+        
+<div class="row" style="font-size:large">
+    <div class=" col-md-5 " style="color:black">
+            @Html.DisplayNameFor(model => model.Allergies)
+            <br>@Html.DisplayFor(model => model.Allergies)
+    </div>
+    <div class=" col-md-6">
+            @Html.DisplayNameFor(model => model.DAllergies)
+            <br>@Html.DisplayFor(model => model.DAllergies)
+    </div>
+</div>
+<br>
+
+<div class="row" style="font-size:large">
+    <div class=" col-md-5 " style="color:black">
+            @Html.DisplayNameFor(model => model.AnyMedication)
+            <br>@Html.DisplayFor(model => model.AnyMedication)
+     </div>
+    <div class=" col-md-6">
+            @Html.DisplayNameFor(model => model.DAnyMedication)
+            <br>@Html.DisplayFor(model => model.DAnyMedication)
+    </div>
+</div>
+<br>
+
+<div class="row" style="font-size:large">
+    <div class=" col-md-5 " style="color:black">
+            @Html.DisplayNameFor(model => model.Asthematic)
+            <br>@Html.DisplayFor(model => model.Asthematic)
+    </div>
+    <div class=" col-md-6">
+            @Html.DisplayNameFor(model => model.DAsthematic)
+            <br>@Html.DisplayFor(model => model.DAsthematic)
+    </div>
+</div>
+<br>
+
+<div class="row" style="font-size:large">
+    <div class=" col-md-5 " style="color:black">
+            @Html.DisplayNameFor(model => model.SeriousInjury)
+            <br>@Html.DisplayFor(model => model.SeriousInjury)
+      </div>
+      <div class=" col-md-6">
+            @Html.DisplayNameFor(model => model.DSeriousInjury)
+            <br>@Html.DisplayFor(model => model.DSeriousInjury)
+      </div>
+</div>
+<br>
+
+
+<div class="row" style="font-size:large">
+    <div class=" col-md-5 " style="color:black">
+            @Html.DisplayNameFor(model => model.PreviousInjury)
+            <br> @Html.DisplayFor(model => model.PreviousInjury)
+       </div>
+    <div class=" col-md-6">
+            @Html.DisplayNameFor(model => model.DPreviousInjury)
+            <br>@Html.DisplayFor(model => model.DPreviousInjury)
+     </div>
+</div>
+<br>
+
+<div class="row" style="font-size:large">
+    <div class=" col-md-5 " style="color:black">
+         @Html.DisplayNameFor(model => model.OtherProblem)
+        <br> @Html.DisplayFor(model => model.OtherProblem)
+    </div>
+     <div class=" col-md-6">
+         @Html.DisplayNameFor(model => model.DOtherProblem)
+         <br> @Html.DisplayFor(model => model.DOtherProblem)
+     </div>
+</div>
+<br>
+
+<div class="row" style="font-size:large">
+    <div class=" col-md-5 " style="color:black">
+
+            @Html.DisplayNameFor(model => model.Height)
+    </div>
+    <div class=" col-md-6">
+            @Html.DisplayFor(model => model.Height)
+    </div>
+</div>
+<br>
+ 
+<div class="row" style="font-size:large">
+    <div class=" col-md-5 " style="color:black">
+            @Html.DisplayNameFor(model => model.Weight)
+    </div>
+    <div class=" col-md-6">
+            @Html.DisplayFor(model => model.Weight)
+    </div>
+</div>
+<br>
+
+<div class="row" style="font-size:large">
+    <div class=" col-md-5 " style="color:black">
+            @Html.DisplayNameFor(model => model.BloodGroup)
+       </div>
+<div class=" col-md-6">
+            @Html.DisplayFor(model => model.BloodGroup)
+    </div>
+</div>
+<br>
+
+
+<div>
+   
+    <a asp-controller="Hospital" asp-action="PatientD" asp-route-id="@Model?.userid" style="font-size:large" style="font-size:large">Back to List</a>
+</div>

@@ -47,7 +47,14 @@ namespace HealthHub.Controllers
         {
             return View();
         }
+        public IActionResult PatientD(int? id)
+        {
 
+            var result = db.PatientRegs.FirstOrDefault(r => r.userid == id);
+
+
+            return View(result);
+        }
         public IActionResult SearchPatient()
         {
             return View();
@@ -65,7 +72,7 @@ namespace HealthHub.Controllers
             }
             else {
 
-                return RedirectToAction("PatientReport", new { id = users.userid });
+                return RedirectToAction("PatientD", new { id = users.userid });
 
 
                 
@@ -74,10 +81,19 @@ namespace HealthHub.Controllers
           
 
         }
-        public IActionResult PatientReport( int? id)
+       
+        public IActionResult PatientReports(int? id)
+        {
+            ViewBag.UId =id;
+            var result = db.Reports.Where(r => r.userid == id).ToList();
+
+
+            return View(result);
+        }
+        public IActionResult MedicalD(int? id)
         {
 
-            var result = db.Reports.Where(r => r.userid == id).ToList();
+            var result = db.MedicalDescription.FirstOrDefault(r => r.userid == id);
 
 
             return View(result);
@@ -159,5 +175,47 @@ namespace HealthHub.Controllers
         }
 
 
+        public IActionResult Appoinment(int? id)
+        {
+            int userIdd = HttpContext.Session.GetInt32("UserId") ?? 0;
+            ViewBag.PatientId = id;
+            ViewBag.HospitalId=userIdd;
+
+            var result = db.HospitalRegs.FirstOrDefault(r => r.userid == userIdd);
+            if (result != null)
+            {
+                ViewBag.HospitalHome = result.Name +" " +result.address +" "+ result.state+" "+result.city;
+                return View();
+            }
+            else {
+
+                return NotFound("User not there");
+            
+            }
+             
+        }
+
+        [HttpPost]
+        public IActionResult Appoinment( Appoinment app)
+        {
+            try
+            {
+                db.Appoinment.Add(app);
+                db.SaveChanges();
+                return RedirectToAction("HospitalPatientAppoinments", new { id = app.userid });
+            }
+            catch (Exception)
+            {
+              
+                return NotFound("Error"); 
+            }
+
+        }
+        public IActionResult HospitalPatientAppoinments(int? id)
+        {
+            ViewBag.UId=id;
+            var result = db.Appoinment.Where(r => r.userid == id).ToList();
+            return View(result);
+        }
     }
 }

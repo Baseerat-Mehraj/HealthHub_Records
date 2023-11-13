@@ -4,6 +4,7 @@ using HealthHub_Records.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HealthHub_Records.Migrations
 {
     [DbContext(typeof(HealthhubDbContext))]
-    partial class HealthhubDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231110061445_abf")]
+    partial class abf
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,11 +27,11 @@ namespace HealthHub_Records.Migrations
 
             modelBuilder.Entity("HealthHub_Records.Models.Appoinment", b =>
                 {
-                    b.Property<int>("AppoinmentId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AppoinmentId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Advice")
                         .IsRequired()
@@ -67,7 +70,7 @@ namespace HealthHub_Records.Migrations
                     b.Property<int?>("userid")
                         .HasColumnType("int");
 
-                    b.HasKey("AppoinmentId");
+                    b.HasKey("Id");
 
                     b.HasIndex("userid");
 

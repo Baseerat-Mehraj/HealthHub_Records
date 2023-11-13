@@ -39,13 +39,16 @@
                             <a asp-controller="Patient" asp-action="ViewReport"><span class="fa fa-sticky-note mr-3"></span> View Reports</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-sticky-note mr-3"></span> Medical Summary</a>
+                            <a asp-controller="Patient" asp-action="MedicalDescription"><span class="fa fa-sticky-note mr-3"></span> Medical Summary</a>
+                        </li>
+                        <li>
+                            <a asp-controller="Patient" asp-action="PatientAppoinments"><span class="fa fa-sticky-note mr-3"></span>Appoinments</a>
                         </li>
                         <li>
                             <a asp-controller="Patient" asp-action="ChangePassword"><span class="fa fa-paper-plane mr-3"></span> Change Password</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-paper-plane mr-3"></span> Generate Card</a>
+                            <a asp-controller="Pdf" asp-action="Index" ><span class="fa fa-paper-plane mr-3"></span> Generate Card</a>
                         </li>
                         <li>
                             <a asp-controller="Home" asp-action="Logout"><span class="fa fa-home mr-3"></span> Logout</a>

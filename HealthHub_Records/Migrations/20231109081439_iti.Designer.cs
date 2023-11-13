@@ -4,6 +4,7 @@ using HealthHub_Records.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HealthHub_Records.Migrations
 {
     [DbContext(typeof(HealthhubDbContext))]
-    partial class HealthhubDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231109081439_iti")]
+    partial class iti
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,58 +24,6 @@ namespace HealthHub_Records.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("HealthHub_Records.Models.Appoinment", b =>
-                {
-                    b.Property<int>("AppoinmentId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AppoinmentId"));
-
-                    b.Property<string>("Advice")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Disease")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DoctorContact")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DoctorName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("HospitalDetails")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Medicines")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("NextAppoinment")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("userid")
-                        .HasColumnType("int");
-
-                    b.HasKey("AppoinmentId");
-
-                    b.HasIndex("userid");
-
-                    b.ToTable("Appoinment");
-                });
 
             modelBuilder.Entity("HealthHub_Records.Models.Contact", b =>
                 {
@@ -346,15 +297,6 @@ namespace HealthHub_Records.Migrations
                     b.HasKey("userid");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("HealthHub_Records.Models.Appoinment", b =>
-                {
-                    b.HasOne("HealthHub_Records.Models.Users", "Users")
-                        .WithMany()
-                        .HasForeignKey("userid");
-
-                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("HealthHub_Records.Models.HospitalRegistration", b =>

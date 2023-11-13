@@ -1,19 +1,25 @@
-﻿@model HealthHub_Records.Models.HospitalRegistration
+﻿@model HealthHub_Records.Models.PatientRegistration
 
 @{
     Layout = "_HospitalLayout";
-    ViewData["Title"] = "HospitalProfile";
+    ViewData["Title"] = "PatientReport";
 }
 
+<h4 style="text-align:center;background-color:gray;font-size:large">Patient Details</h4>
 
 <div style ="font-size:large">
-    
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.firstname)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
+            @Html.DisplayFor(model => model.firstname)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.lastname)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.lastname)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.address)
@@ -34,10 +40,10 @@
             @Html.DisplayFor(model => model.city)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.pincode)
+            @Html.DisplayNameFor(model => model.dob)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.pincode)
+            @Html.DisplayFor(model => model.dob)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.phoneno)
@@ -46,15 +52,16 @@
             @Html.DisplayFor(model => model.phoneno)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.licienceno)
+            @Html.DisplayNameFor(model => model.gender)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.licienceno)
+            @Html.DisplayFor(model => model.gender)
         </dd>
-      
     </dl>
 </div>
-<div>
-    <a asp-controller="Hospital" asp-action="EditHospitalProfile" asp-route-id="@Model?.Hospitalid" class="btn btn-primary" style="font-size:large">Edit</a>
-
+<div style="font-size:large">
+    <a asp-controller="Hospital" asp-action="PatientReports" asp-route-id="@Model?.userid">View Reports</a> |
+    <a asp-controller="Hospital" asp-action="MedicalD" asp-route-id="@Model?.userid">Medical Description</a> |
+    <a asp-controller="Hospital" asp-action="Appoinment" asp-route-id="@Model?.userid">Set Appoinment</a> |
+    <a asp-controller="Hospital" asp-action="HospitalPatientAppoinments" asp-route-id="@Model?.userid">Prescriptions</a> 
 </div>

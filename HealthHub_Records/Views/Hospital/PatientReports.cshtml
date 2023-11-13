@@ -2,11 +2,15 @@
 
 @{
     Layout = "_HospitalLayout";
-    ViewData["Title"] = "PatientReport";
+    ViewData["Title"] = "PatientReports";
 }
 
+<h4 style="text-align:center;background-color:gray;font-size:large">Patient Reports</h4>
 
-<table class="table">
+<p>
+    <a asp-controller="Hospital" asp-action="PatientD" asp-route-id="@ViewBag.UId" style="font-size:large"> Back to List </a>
+</p>
+<table class="table" style="font-size:large">
     <thead>
         <tr>
             <th>
@@ -36,8 +40,8 @@
             </td>
            
             <td>
-                    <a asp-controller="Patient" asp-action="Download" asp-route-id="@item.userid" class="btn btn-primary">Download</a>
-
+                <a  asp-controller="Patient" asp-action="Download" asp-route-id="@item.userid">Download</a> 
+                
             </td>
         </tr>
 }

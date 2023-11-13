@@ -19,29 +19,40 @@ namespace HealthHub.Controllers
         [HttpPost]
         public IActionResult PatientRegistration(PatientRegistrationView obj)
         {
-            Users log = new Users();
-            log.username = obj.username;
-            log.password = obj.password;
-            log.email = obj.email;
-            log.RoleId = 2;
-            db.Users.Add(log);
-            db.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                Users log = new Users();
+                log.username = obj.username;
+                log.password = obj.password;
+                log.email = obj.email;
+                log.RoleId = 2;
+                db.Users.Add(log);
+                db.SaveChanges();
 
-            PatientRegistration reg = new PatientRegistration();
-            reg.firstname = obj.firstname;
-            reg.lastname = obj.lastname;
-            reg.address = obj.address;
-            reg.city = obj.city;
-            reg.state = obj.state;
-            reg.dob = obj.dob;
-            reg.gender = obj.gender;
-            reg.phoneno = obj.phoneno;
-            reg.userid = log.userid;
-            db.PatientRegs.Add(reg);
-            db.SaveChanges();
-            ViewBag.Alert = "success";
-            ViewBag.Message = "Patient Registered successfully!";
-            return RedirectToAction("PatientsRegistration");
+                PatientRegistration reg = new PatientRegistration();
+                reg.firstname = obj.firstname;
+                reg.lastname = obj.lastname;
+                reg.address = obj.address;
+                reg.city = obj.city;
+                reg.state = obj.state;
+                reg.dob = obj.dob;
+                reg.gender = obj.gender;
+                reg.phoneno = obj.phoneno;
+                reg.userid = log.userid;
+                db.PatientRegs.Add(reg);
+                db.SaveChanges();
+                ViewBag.Alert = "success";
+                ViewBag.Message = "Patient Registered successfully!";
+                return RedirectToAction("PatientsRegistration");
+            }
+            else {
+
+                return NotFound("Validation not proper");
+            
+            }
+
+
+
         }
 
 
@@ -194,6 +205,81 @@ namespace HealthHub.Controllers
 
         }
 
+        public IActionResult MedicalDescription() {
 
+            return View();
+        }
+        [HttpPost]
+        public IActionResult MedicalDescription(MedicalDescription obj)
+        {
+            int userIdd = HttpContext.Session.GetInt32("UserId") ?? 0;
+
+            var med = db.MedicalDescription.FirstOrDefault(r=>r.userid==userIdd);
+            if (med != null)
+            {
+
+                med.Diabetic = obj.Diabetic;
+                med.DDiabetic = obj.DDiabetic;
+                med.BloodPressure = obj.BloodPressure;
+                med.DBloodPressure = obj.DBloodPressure;
+                med.Allergies = obj.Allergies;
+                med.DAllergies = obj.DAllergies;
+                med.AnyMedication = obj.AnyMedication;
+                med.DAnyMedication = obj.DAnyMedication;
+                med.Asthematic = obj.Asthematic;
+                med.DAsthematic = obj.DAsthematic;
+                med.SeriousInjury = obj.SeriousInjury;
+                med.DSeriousInjury = obj.DSeriousInjury;
+                med.PreviousInjury = obj.PreviousInjury;
+                med.DPreviousInjury = obj.DPreviousInjury;
+                med.OtherProblem = obj.OtherProblem;
+                med.DOtherProblem = obj.DOtherProblem;
+                med.Height = obj.Height;
+                med.Weight = obj.Weight;
+                med.BloodGroup = obj.BloodGroup;
+            
+                db.MedicalDescription.Update(med);
+                db.SaveChanges();
+                return RedirectToAction("PatientDashboard");
+            }
+            else {
+
+                MedicalDescription me=new MedicalDescription();
+                me.Diabetic = obj.Diabetic;
+                me.DDiabetic = obj.DDiabetic;
+                me.BloodPressure = obj.BloodPressure;
+                me.DBloodPressure = obj.DBloodPressure;
+                me.Allergies = obj.Allergies;
+                me.DAllergies = obj.DAllergies;
+                me.AnyMedication = obj.AnyMedication;
+                me.DAnyMedication = obj.DAnyMedication;
+                me.Asthematic = obj.Asthematic;
+                me.DAsthematic = obj.DAsthematic;
+                me.SeriousInjury = obj.SeriousInjury;
+                me.DSeriousInjury = obj.DSeriousInjury;
+                me.PreviousInjury = obj.PreviousInjury;
+                me.DPreviousInjury = obj.DPreviousInjury;
+                me.OtherProblem = obj.OtherProblem;
+                me.DOtherProblem = obj.DOtherProblem;
+                me.Height = obj.Height;
+                me.Weight = obj.Weight;
+                me.BloodGroup = obj.BloodGroup;
+                me.userid = userIdd;
+                db.MedicalDescription.Add(me);
+                db.SaveChanges();
+                return RedirectToAction("PatientDashboard");
+
+
+
+            }
+           
+        }
+
+        public IActionResult PatientAppoinments()
+        {
+            int id = HttpContext.Session.GetInt32("UserId") ?? 0;
+            var result = db.Appoinment.Where(r => r.userid == id).ToList();
+            return View(result);
+        }
     }
 }

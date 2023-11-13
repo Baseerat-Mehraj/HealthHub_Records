@@ -1,0 +1,79 @@
+﻿@model IEnumerable<HealthHub_Records.Models.Appoinment>
+
+@{
+    Layout = "_HospitalLayout";
+    ViewData["Title"] = "HospitalPatientAppoinments";
+}
+
+<h1>HospitalPatientAppoinments</h1>
+
+<p>
+    <a asp-controller="Hospital" asp-action="PatientD" asp-route-id="@ViewBag.UId" style="font-size:large"> Back to List </a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.HospitalDetails)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Disease)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Medicines)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Advice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NextAppoinment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DoctorName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DoctorContact)
+            </th>
+           
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.HospitalDetails)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Disease)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Medicines)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Advice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NextAppoinment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DoctorName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DoctorContact)
+            </td>
+          
+        </tr>
+}
+    </tbody>
+</table>

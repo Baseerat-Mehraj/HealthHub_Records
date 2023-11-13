@@ -1,0 +1,187 @@
+﻿@model HealthHub_Records.Models.MedicalDescription
+
+@{
+    Layout = "_PatientLayout";
+    ViewData["Title"] = "MedicalDescription";
+}
+
+<h4  style="text-align:center;background-color:gray">Medical Description</h4>
+<div class="row">
+    <div class="col-md-12" style="font-size:larger">
+        <form asp-action="MedicalDescription">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+   
+            <div class="row">
+                <div class="col-md-3" style="padding-top:10px;color:black;">
+                    <label asp-for="BloodPressure" class="control-label">Blood Pressure</label>
+                  <br> @Html.RadioButtonFor(model => model.BloodPressure, "Yes") Yes
+                       @Html.RadioButtonFor(model => model.BloodPressure, "No") No
+
+                </div>
+               
+                <div class="col-md-9">
+
+                    <label asp-for="DBloodPressure" class="control-label">Description[Optional]</label>
+                    <input asp-for="DBloodPressure" class="form-control" style="border:solid" />
+
+
+                </div>
+            </div>
+            <br>
+          
+            <div class="row">
+                <div class="col-md-3" style="padding-top:10px;color:black;">
+                    <label asp-for="Diabetic" class="control-label">Diabetic</label>
+                    <br> @Html.RadioButtonFor(model => model.Diabetic, "Yes") Yes
+                         @Html.RadioButtonFor(model => model.Diabetic, "No") No
+
+                </div>
+
+                <div class="col-md-9">
+
+                    <label asp-for="DDiabetic" class="control-label">Description[Optional]</label>
+                    <input asp-for="DDiabetic" class="form-control" style="border:solid" />
+
+
+                </div>
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="col-md-3" style="padding-top:10px;color:black;">
+                    <label asp-for="Allergies" class="control-label">Allergies</label>
+                    <br> @Html.RadioButtonFor(model => model.Allergies, "Yes") Yes
+                    @Html.RadioButtonFor(model => model.Allergies, "No") No
+
+                </div>
+
+                <div class="col-md-9">
+
+                    <label asp-for="DAllergies" class="control-label">Description[Optional]</label>
+                    <input asp-for="DAllergies" class="form-control" style="border:solid" />
+
+
+                </div>
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="col-md-3" style="padding-top:10px;color:black;">
+                    <label asp-for="AnyMedication" class="control-label">Medication</label>
+                    <br> @Html.RadioButtonFor(model => model.AnyMedication, "Yes") Yes
+                    @Html.RadioButtonFor(model => model.AnyMedication, "No") No
+
+                </div>
+
+                <div class="col-md-9">
+
+                    <label asp-for="DAnyMedication" class="control-label">Description[Optional]</label>
+                    <input asp-for="DAnyMedication" class="form-control" style="border:solid" />
+
+
+                </div>
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="col-md-3" style="padding-top:10px;color:black;">
+                    <label asp-for="Asthematic" class="control-label">Asthematic</label>
+                    <br> @Html.RadioButtonFor(model => model.Asthematic, "Yes") Yes
+                    @Html.RadioButtonFor(model => model.Asthematic, "No") No
+
+                </div>
+
+                <div class="col-md-9">
+
+                    <label asp-for="DAsthematic" class="control-label">Description[Optional]</label>
+                    <input asp-for="DAsthematic" class="form-control" style="border:solid" />
+
+
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-3" style="padding-top:10px;color:black;">
+                    <label asp-for="SeriousInjury" class="control-label">Serious Injury</label>
+                    <br> @Html.RadioButtonFor(model => model.SeriousInjury, "Yes") Yes
+                    @Html.RadioButtonFor(model => model.SeriousInjury, "No") No
+
+                </div>
+
+                <div class="col-md-9">
+
+                    <label asp-for="DSeriousInjury" class="control-label">Description[Optional]</label>
+                    <input asp-for="DSeriousInjury" class="form-control" style="border:solid" />
+
+
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-3" style="padding-top:10px;color:black;">
+                    <label asp-for="PreviousInjury" class="control-label">Previous Injury</label>
+                    <br>@Html.RadioButtonFor(model => model.PreviousInjury, "Yes") Yes
+                    @Html.RadioButtonFor(model => model.PreviousInjury, "No") No
+
+                </div>
+
+                <div class="col-md-9">
+
+                    <label asp-for="DPreviousInjury" class="control-label">Description[Optional]</label>
+                    <input asp-for="DPreviousInjury" class="form-control" style="border:solid" />
+
+
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-3" style="padding-top:10px;color:black;">
+                    <label asp-for="OtherProblem" class="control-label">Other Problem</label>
+                    <br> @Html.RadioButtonFor(model => model.OtherProblem, "Yes") Yes
+                    @Html.RadioButtonFor(model => model.OtherProblem, "No") No
+
+                </div>
+
+                <div class="col-md-9">
+
+                    <label asp-for="DOtherProblem" class="control-label">Description[Optional]</label>
+                    <input asp-for="DOtherProblem" class="form-control" style="border:solid" />
+
+
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-4" style="padding-top:10px;color:black;">
+                    <label asp-for="Height" class="control-label">Height</label>
+                    <input asp-for="Height" class="form-control" style="border:solid" />
+
+                </div>
+
+                <div class="col-md-4" style="padding-top:10px;color:black;">
+                    <label asp-for="Weight" class="control-label">Weight</label>
+                    
+                    <input asp-for="Weight" class="form-control" style="border:solid" />
+
+
+                </div>
+                <div class="col-md-4" style="padding-top:10px;color:black;">
+                    <label asp-for="BloodGroup" class="control-label">Blood Group</label>
+                    <input asp-for="BloodGroup" class="form-control" style="border:solid" />
+
+                </div>
+            </div>
+            <br>
+            <input type="hidden" asp-for="userid" class="form-control"/>
+            <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
