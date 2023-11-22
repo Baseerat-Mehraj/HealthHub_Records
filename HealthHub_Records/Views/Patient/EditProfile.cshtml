@@ -6,7 +6,16 @@
 }
 
 <div class="row" style="font-size:larger">
+    <div class="col-12">
+        @if (ViewBag.Alert != null && ViewBag.Message != null)
+        {
+            <div class="alert text-white alert-@ViewBag.Alert bg-@ViewBag.Alert">
+                @ViewBag.Message
+            </div>
+        }
+    </div>
     <div class="col-md-12">
+
         <form asp-action="EditProfile">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="patientid" />

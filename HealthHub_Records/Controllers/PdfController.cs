@@ -1,4 +1,5 @@
-﻿using HealthHub_Records.Models;
+﻿using AspNetCoreHero.ToastNotification.Abstractions;
+using HealthHub_Records.Models;
 using Microsoft.AspNetCore.Mvc;
 using PdfSharpCore;
 using PdfSharpCore.Pdf;
@@ -11,10 +12,12 @@ namespace HealthHub_Records.Controllers
     public class PdfController : Controller
     {
         private readonly HealthhubDbContext db;
+     
         public PdfController(HealthhubDbContext db)
         {
-            this.db = db;   
-            
+            this.db = db;
+           
+
         }
       
 

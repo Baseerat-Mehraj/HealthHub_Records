@@ -1,17 +1,20 @@
 ﻿
+using AspNetCoreHero.ToastNotification.Abstractions;
 using HealthHub_Records.Models;
 using HealthHub_Records.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace HealthHub_Records.Controllers
 {
     public class AdminController : Controller
     {
         private readonly HealthhubDbContext db;
-        public AdminController(HealthhubDbContext db)
+        private readonly INotyfService _notyf;
+        public AdminController(HealthhubDbContext db, INotyfService notyf)
         {
-            this.db = db;   
-            
+            this.db = db;
+            _notyf = notyf;
         }
         public IActionResult AdminDashboard()
         {
@@ -19,15 +22,29 @@ namespace HealthHub_Records.Controllers
         }
         public IActionResult GetAllPatients()
         {
-            IEnumerable<PatientRegistration> objCategoryList = db.PatientRegs;
-            return View(objCategoryList);
+          
+         
+            var patients = db.PatientRegs.Include(p => p.Users).ToList();
+
+           
+            AllPatientDetails obj = new AllPatientDetails
+            {
+                Patients = patients
+            };
+
+            return View(obj);
            
         }
 
         public IActionResult GetAllHospitals()
         {
-            IEnumerable<HospitalRegistration> objCategoryList = db.HospitalRegs;
-            return View(objCategoryList);
+            var hospitals = db.HospitalRegs.Include(p => p.Users).ToList();
+
+            AllHospitalDetails obj = new AllHospitalDetails
+            {
+                Hospitals=hospitals
+            };
+            return View(obj);
 
         }
         public IActionResult Active(int? id)
@@ -39,8 +56,9 @@ namespace HealthHub_Records.Controllers
                 result.isactive = true;
                 db.Users.Update(result);
                 db.SaveChanges();
-                TempData["sucess"] = "Category updated successfull";
-                return RedirectToAction("GetAllPatients");
+                
+                _notyf.Success("User Activated Successfully");
+                return RedirectToAction("AdminDashboard");
 
             }
             else
@@ -60,8 +78,8 @@ namespace HealthHub_Records.Controllers
                 result.isactive = false;
                 db.Users.Update(result);
                 db.SaveChanges();
-                TempData["sucess"] = "Category updated successfull";
-                return RedirectToAction("GetAllPatients");
+                _notyf.Success("User Deactivated Successfully");
+                return RedirectToAction("AdminDashboard");
 
             }
             else
@@ -81,34 +99,6 @@ namespace HealthHub_Records.Controllers
             IEnumerable<Contact> objCategoryList = db.Contacts;
             return View(objCategoryList);
         }
-        public IActionResult ChangePassword()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult ChangePassword(ChangePasswordView v)
-        {
-            int userId = HttpContext.Session.GetInt32("UserId") ?? 0;
-            var result = db.Users.FirstOrDefault(r => r.userid == userId && r.password == v.OldPassword);
-            if (result != null)
-            {
-
-                result.password = v.NewPassword;
-                db.SaveChanges();
-                return RedirectToAction("Logout");
-
-
-            }
-            else
-            {
-                return NotFound("Password donot match");
-
-            }
-
-        }
-
-
-
+     
     }
 }

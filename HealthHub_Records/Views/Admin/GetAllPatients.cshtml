@@ -1,44 +1,47 @@
-﻿@model IEnumerable<HealthHub_Records.Models.PatientRegistration>
+﻿@model HealthHub_Records.ViewModels.AllPatientDetails
 
 @{
     Layout = "_AdminLayout";
     ViewData["Title"] = "GetAllPatients";
 }
 
-<h1>Patients</h1>
+<h3>Patients</h3>
 
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.firstname)
+                Firstname
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.lastname)
+               Lastname
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.address)
+               Address
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.state)
+                State
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.city)
+                City
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.dob)
+                DOB
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.phoneno)
+               PhoneNo
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.gender)
+                Gender
+            </th>
+            <th>
+                Status
             </th>
             <th>Action</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.Patients) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.firstname)
@@ -64,9 +67,13 @@
             <td>
                 @Html.DisplayFor(modelItem => item.gender)
             </td>
-           
+                <td>
+                   @item.Users.isactive
+                </td>
+
+
             <td>
-                    <a asp-action="Active" asp-route-id="@item.userid" class="btn btn-primary">Activate</a> |
+                    <a asp-action="Active" asp-route-id="@item.userid" class="btn btn-primary">Active</a> |
                
                     <a asp-action="Inactive" asp-route-id="@item.userid" class="btn btn-danger">Block</a>
             </td>

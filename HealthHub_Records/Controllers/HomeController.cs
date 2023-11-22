@@ -1,4 +1,5 @@
-﻿using HealthHub_Records.Models;
+﻿using AspNetCoreHero.ToastNotification.Abstractions;
+using HealthHub_Records.Models;
 using HealthHub_Records.ViewModels;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Mvc;
@@ -9,13 +10,14 @@ namespace HealthHub_Records.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
+        private readonly INotyfService _notyf;
         private readonly HealthhubDbContext db;
      
-        public HomeController(ILogger<HomeController> logger, HealthhubDbContext db)
+        public HomeController(ILogger<HomeController> logger, HealthhubDbContext db, INotyfService notyf)
         {
             _logger = logger;
             this.db = db;
+            _notyf = notyf;
         }
 
         public IActionResult Index()
@@ -37,7 +39,7 @@ namespace HealthHub_Records.Controllers
         {
            var result=db.Contacts.Add(contact);
            db.SaveChanges();
-
+            _notyf.Success("Messaage Sent");
             return RedirectToAction("Index");
         }
 
@@ -60,7 +62,7 @@ namespace HealthHub_Records.Controllers
 
                 // Store the "userid" in the session
                 session.SetInt32("UserId", userId);
-
+                
                 return RedirectToAction("PatientDashboard", "Patient");
             }
 
@@ -82,9 +84,10 @@ namespace HealthHub_Records.Controllers
                 session.SetInt32("UserId", userId);
                 return RedirectToAction("AdminDashboard", "Admin");
             }
-            else { 
+            else {
 
-            return NotFound("User doesnot found");
+                _notyf.Error("Incorrect Credentials Try again!");
+                return RedirectToAction("Login");
             }
 
         }
@@ -95,7 +98,42 @@ namespace HealthHub_Records.Controllers
             session.Clear();
             return RedirectToAction("Index");
         }
-      
+
+        public IActionResult ForgetPassword()
+        {
+            return View();
+        }
+
+        public IActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult ChangePassword(ChangePasswordView v)
+        {
+            int userId = HttpContext.Session.GetInt32("UserId") ?? 0;
+            var result = db.Users.FirstOrDefault(r => r.userid == userId && r.password == v.OldPassword);
+            if (result != null)
+            {
+
+                result.password = v.NewPassword;
+                db.SaveChanges();
+                _notyf.Success("Password Changed Successfully Need to Login Again!");
+                return RedirectToAction("Logout");
+
+
+            }
+            else
+            {
+              
+                return View();
+
+            }
+
+        }
+
+
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

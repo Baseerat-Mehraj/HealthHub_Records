@@ -8,6 +8,12 @@
     <title>HealthHub_Records | @ViewData["Title"]</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
+    
+
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Navbar.styles.css" asp-append-version="true" />
 
     <!-- Favicons -->
     <link href="~/assets/img/favicon.png" rel="icon">
@@ -157,7 +163,16 @@
     <!-- Template Main JS File -->
     <script src="~/assets/js/main.js"></script>
 
-   
+
+
+
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+    @await Component.InvokeAsync("Notyf")
 
 </body>
 

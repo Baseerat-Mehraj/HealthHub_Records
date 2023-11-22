@@ -2,15 +2,18 @@
 using HealthHub_Records.ViewModels;
 using HealthHub_Records.Models;
 using Microsoft.AspNetCore.Mvc;
+using AspNetCoreHero.ToastNotification.Abstractions;
 
 namespace HealthHub.Controllers
 {
     public class HospitalController : Controller
     {
         private readonly HealthhubDbContext db;
-        public HospitalController(HealthhubDbContext db)
+        private readonly INotyfService _notyf;
+        public HospitalController(HealthhubDbContext db, INotyfService notyf)
         {
             this.db = db;
+            _notyf = notyf;
         }
         public IActionResult HospitalRegistration()
         {
@@ -20,28 +23,46 @@ namespace HealthHub.Controllers
         [HttpPost]
         public IActionResult HospitalRegistration(HospitalRegistrationView obj)
         {
-            Users log = new Users();
-            log.username = obj.username;
-            log.password = obj.password;
-            log.email = obj.email;
-            log.RoleId = 3;
-            db.Users.Add(log);
-            db.SaveChanges();
+            var result = db.Users.Any(u => u.email == obj.email);
 
-            HospitalRegistration reg = new HospitalRegistration();
-            reg.Name = obj.Name;
-            reg.address = obj.address;
-            reg.licienceno = obj.licienceno;
-            reg.city = obj.city;
-            reg.state = obj.state;
-            reg.pincode = obj.pincode;
-            reg.phoneno = obj.phoneno;
-            reg.userid = log.userid;
-            db.HospitalRegs.Add(reg);
-            db.SaveChanges();
-            return RedirectToAction("HospitalRegistration");
-        }
-      
+            if (result)
+            {
+
+                _notyf.Error("Email already exists Try another email!");
+                return RedirectToAction("HospitalRegistration");
+
+            }
+            else if (ModelState.IsValid && obj.confirmpassword == obj.password)
+            {
+                Users log = new Users();
+                log.username = obj.username;
+                log.password = obj.password;
+                log.email = obj.email;
+                log.RoleId = 3;
+                db.Users.Add(log);
+                db.SaveChanges();
+
+                HospitalRegistration reg = new HospitalRegistration();
+                reg.Name = obj.Name;
+                reg.address = obj.address;
+                reg.licienceno = obj.licienceno;
+                reg.city = obj.city;
+                reg.state = obj.state;
+                reg.pincode = obj.pincode;
+                reg.phoneno = obj.phoneno;
+                reg.userid = log.userid;
+                db.HospitalRegs.Add(reg);
+                db.SaveChanges();
+                _notyf.Success("Hospital Registered successfully!");
+                return RedirectToAction("HospitalRegistration");
+            }
+            else
+            {
+                _notyf.Error("Something went wrong Try again!");
+                return RedirectToAction("HospitalRegistration");
+
+            }
+        }  
 
         public IActionResult HospitalDashboard()
         {
@@ -67,7 +88,8 @@ namespace HealthHub.Controllers
             if (users == null)
             {
 
-                return NotFound("User doesnot exixt");
+                _notyf.Success("User doesnot exixt");
+                return View();
 
             }
             else {
@@ -94,9 +116,18 @@ namespace HealthHub.Controllers
         {
 
             var result = db.MedicalDescription.FirstOrDefault(r => r.userid == id);
+            if (result != null)
+            {
 
+                return View(result);
+            }
+            else {
 
-            return View(result);
+                _notyf.Error("User doesnot have Submited any details Yet!");
+                return RedirectToAction("PatientD", new { id = id });
+            }
+
+          
         }
 
         public IActionResult HospitalProfile()
@@ -134,7 +165,7 @@ namespace HealthHub.Controllers
                 result.city = reg.city;
                 result.phoneno = reg.phoneno;
                 db.SaveChanges();
-                TempData["sucess"] = "Category updated successfull";
+                _notyf.Success("Profile updated successfully!");
                 return RedirectToAction("HospitalProfile");
 
             }
@@ -147,32 +178,7 @@ namespace HealthHub.Controllers
 
 
         }
-        public IActionResult ChangePassword()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult ChangePassword(ChangePasswordView v)
-        {
-            int userId = HttpContext.Session.GetInt32("UserId") ?? 0;
-            var result = db.Users.FirstOrDefault(r => r.userid == userId && r.password == v.OldPassword);
-            if (result != null)
-            {
-
-                result.password = v.NewPassword;
-                db.SaveChanges();
-                return RedirectToAction("Logout");
-
-
-            }
-            else
-            {
-                return NotFound("Password donot match");
-
-            }
-
-        }
+       
 
 
         public IActionResult Appoinment(int? id)
@@ -189,6 +195,7 @@ namespace HealthHub.Controllers
             }
             else {
 
+               
                 return NotFound("User not there");
             
             }
@@ -202,6 +209,7 @@ namespace HealthHub.Controllers
             {
                 db.Appoinment.Add(app);
                 db.SaveChanges();
+                _notyf.Success("Patient appoinment set successfully!");
                 return RedirectToAction("HospitalPatientAppoinments", new { id = app.userid });
             }
             catch (Exception)

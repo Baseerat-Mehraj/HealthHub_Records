@@ -1,15 +1,18 @@
 ﻿using HealthHub_Records.ViewModels;
 using HealthHub_Records.Models;
 using Microsoft.AspNetCore.Mvc;
+using AspNetCoreHero.ToastNotification.Abstractions;
 
 namespace HealthHub.Controllers
 {
     public class PatientController : Controller
     {
         private readonly HealthhubDbContext db;
-        public PatientController(HealthhubDbContext db)
+        private readonly INotyfService _notyf;
+        public PatientController(HealthhubDbContext db, INotyfService notyf)
         {
             this.db = db;
+            _notyf = notyf;
         }
         public IActionResult PatientsRegistration()
         {
@@ -19,7 +22,16 @@ namespace HealthHub.Controllers
         [HttpPost]
         public IActionResult PatientRegistration(PatientRegistrationView obj)
         {
-            if (ModelState.IsValid)
+            var result = db.Users.Any(u => u.email == obj.email);
+
+            if (result)
+            {
+
+                _notyf.Error("Email already exists Try another email!");
+                return RedirectToAction("PatientsRegistration");
+
+            }
+            else if (ModelState.IsValid && obj.confirmpassword == obj.password)
             {
                 Users log = new Users();
                 log.username = obj.username;
@@ -41,14 +53,14 @@ namespace HealthHub.Controllers
                 reg.userid = log.userid;
                 db.PatientRegs.Add(reg);
                 db.SaveChanges();
-                ViewBag.Alert = "success";
-                ViewBag.Message = "Patient Registered successfully!";
+                _notyf.Success("Patient Registered successfully!");
                 return RedirectToAction("PatientsRegistration");
             }
             else {
 
-                return NotFound("Validation not proper");
-            
+                _notyf.Error("Something went wrong Try again!");
+                return RedirectToAction("PatientsRegistration");
+
             }
 
 
@@ -99,7 +111,7 @@ namespace HealthHub.Controllers
                 result.city = reg.city;
                 result.phoneno = reg.phoneno;
                 db.SaveChanges();
-                TempData["sucess"] = "Category updated successfull";
+                _notyf.Success("Patient updated successfully!");
                 return RedirectToAction("PatientProfile");
 
             }
@@ -146,13 +158,11 @@ namespace HealthHub.Controllers
                 int saved = await db.SaveChangesAsync();
                 if (saved != 0)
                 {
-                    ViewBag.Alert = "success";
-                    ViewBag.Message = "File uploaded successfully!";
+                    _notyf.Success("File Uploaded successfully!");
                 }
                 else
                 {
-                    ViewBag.Alert = "error";
-                    ViewBag.Message = "Error while uplaoding";
+                    _notyf.Error("Something went wrong!");
                 }
             }
 
@@ -238,8 +248,10 @@ namespace HealthHub.Controllers
                 med.Weight = obj.Weight;
                 med.BloodGroup = obj.BloodGroup;
             
+
                 db.MedicalDescription.Update(med);
                 db.SaveChanges();
+                _notyf.Success("Patient MedicalDetails Updated successfully!");
                 return RedirectToAction("PatientDashboard");
             }
             else {
@@ -267,6 +279,7 @@ namespace HealthHub.Controllers
                 me.userid = userIdd;
                 db.MedicalDescription.Add(me);
                 db.SaveChanges();
+                _notyf.Success("Patient Medical Details Added Successfully!");
                 return RedirectToAction("PatientDashboard");
 
 

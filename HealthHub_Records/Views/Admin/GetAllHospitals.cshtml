@@ -1,4 +1,4 @@
-﻿@model IEnumerable<HealthHub_Records.Models.HospitalRegistration>
+﻿@model HealthHub_Records.ViewModels.AllHospitalDetails
 
 @{
 
@@ -6,41 +6,41 @@
     ViewData["Title"] = "GetAllHospitals";
 }
 
-<h1>GetAllHospitals</h1>
+<h3>Hospitals</h3>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                Name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.address)
+                Address
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.state)
+                State
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.city)
+                City
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.pincode)
+                Pincode
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.phoneno)
+                PhoneNo
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.licienceno)
+                LicienceNo
+            </th>
+            <th>
+                Status
             </th>
           
             <th>Action</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.Hospitals) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
@@ -63,10 +63,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.licienceno)
             </td>
-            
+                <td>
+                    @item.Users.isactive
+                </td>
             <td>
 
-                    <a asp-action="Active" asp-route-id="@item.userid" class="btn btn-primary">Activate</a> |
+                    <a asp-action="Active" asp-route-id="@item.userid" class="btn btn-primary">Active</a> |
 
                     <a  asp-action="Inactive" asp-route-id="@item.userid" class="btn btn-danger">Block</a>
             </td>

@@ -27,7 +27,7 @@ namespace HealthHub_Records.ViewModels
         [Required(ErrorMessage = "This Field is Required")]
         public string username { get; set; }
         [Required(ErrorMessage = "This Field is Required")]
-        [DataType(DataType.Password)]
+        
         public string password { get; set; }
         [Required(ErrorMessage = "This Field is Required")]
         [DataType(DataType.Password)]

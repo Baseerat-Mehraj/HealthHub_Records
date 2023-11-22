@@ -45,7 +45,7 @@
                             <a asp-controller="Patient" asp-action="PatientAppoinments"><span class="fa fa-sticky-note mr-3"></span>Appoinments</a>
                         </li>
                         <li>
-                            <a asp-controller="Patient" asp-action="ChangePassword"><span class="fa fa-paper-plane mr-3"></span> Change Password</a>
+                            <a asp-controller="Home" asp-action="ChangePassword"><span class="fa fa-paper-plane mr-3"></span> Change Password</a>
                         </li>
                         <li>
                             <a asp-controller="Pdf" asp-action="Index" ><span class="fa fa-paper-plane mr-3"></span> Generate Card</a>
@@ -76,6 +76,7 @@
     <@* script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script> *@
+    @await Component.InvokeAsync("Notyf")
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
