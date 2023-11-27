@@ -70,6 +70,11 @@ namespace HealthHub.Controllers
 
         public IActionResult PatientDashboard()
         {
+            int userId = HttpContext.Session.GetInt32("UserId") ?? 0;
+            var user = db.Reports.Where(r => r.userid == userId).ToList();
+            var result = db.Appoinment.Where(r => r.userid == userId).ToList();
+            ViewBag.TotalReports = user.Count;
+            ViewBag.TotalAppoinments = result.Count;
             return View();
         }
 
@@ -188,32 +193,7 @@ namespace HealthHub.Controllers
             return PhysicalFile(filePath, "application/octet-stream", fileModel.FileName);
 
         }
-        public IActionResult ChangePassword()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult ChangePassword(ChangePasswordView v)
-        {
-            int userId = HttpContext.Session.GetInt32("UserId") ?? 0;
-            var result = db.Users.FirstOrDefault(r => r.userid == userId && r.password == v.OldPassword);
-            if (result != null)
-            {
-
-                result.password = v.NewPassword;
-                db.SaveChanges();
-                return RedirectToAction("Logout");
-
-
-            }
-            else
-            {
-                return NotFound("Password donot match");
-
-            }
-
-        }
+     
 
         public IActionResult MedicalDescription() {
 

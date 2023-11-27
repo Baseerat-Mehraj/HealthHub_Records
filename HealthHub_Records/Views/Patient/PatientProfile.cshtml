@@ -4,8 +4,9 @@
     Layout = "_PatientLayout";
     ViewData["Title"] = "PatientProfile";
 }
-<h4 style="text-align:center;background-color:gray;font-size:large">Patient Details</h4>
-<div class="row justify-content-center">
+
+    <div style="font-size:large; width:790px;padding: 20px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); background-color:lightblue;border-radius: 8px; ">
+    <h4 style="text-align:center;background-color:gray;font-size:large;color:white">Patient Details</h4>
     <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.firstname)
@@ -55,15 +56,12 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.gender)
         </dd>
-       
+        <dt class="col-sm-2">
+                <a asp-controller="Patient" asp-action="EditProfile" asp-route-id="@Model?.patientid" class="btn btn-secondary">Edit</a>
+        </dt>
     </dl>
               
 
-  <a asp-controller="Patient" asp-action="EditProfile" asp-route-id="@Model?.patientid" class="btn btn-primary">Edit</a>
-
-               
+ 
 </div>
-        </div>
-    </div>
-</div>
-
+        

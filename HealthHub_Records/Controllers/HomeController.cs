@@ -106,6 +106,12 @@ namespace HealthHub_Records.Controllers
 
         public IActionResult ChangePassword()
         {
+            int userId = HttpContext.Session.GetInt32("UserId") ?? 0;
+            var result = db.Users.FirstOrDefault(r => r.userid == userId );
+            if (result != null)
+            {
+                ViewBag.Role = result.RoleId;
+            }
             return View();
         }
 
@@ -133,6 +139,8 @@ namespace HealthHub_Records.Controllers
 
         }
 
+        
+        
 
 
 

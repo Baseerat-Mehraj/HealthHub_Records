@@ -2,4 +2,27 @@
 
     Layout = "_PatientLayout";
 }
-<h3>Patient Dashboard</h3>
+<body style="background-image:url('/images/pdf.png')">
+    <br>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card text-white bg-dark mb-3" style="max-width: 18rem;text-align:center">
+                <div class="card-header"><h3 style="color:white">Total MedicalReports</h3></div>
+                <div class="card-body">
+                    <h1 class="card-title" style="color:white;text-align:center">@ViewBag.TotalReports</h1>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card text-white bg-dark mb-3" style="max-width: 18rem;text-align:center">
+                <div class="card-header"><h3 style="color:white">Total Appointments</h3></div>
+                <div class="card-body">
+                    <h1 class="card-title" style="color:white;text-align:center">@ViewBag.TotalAppoinments</h1>
+
+                </div>
+            </div>
+        </div>
+      
+    </div>
+</body>

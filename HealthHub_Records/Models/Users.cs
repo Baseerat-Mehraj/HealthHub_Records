@@ -13,6 +13,7 @@ namespace HealthHub_Records.Models
         public string password { get; set; }=string.Empty;
         [Required(ErrorMessage = "This Field is Required")]
         public string email { get; set; }
+        public bool Request { get; set; } = true;
         public bool isactive { get; set; } = false;
         public int RoleId { get; set; }
     }

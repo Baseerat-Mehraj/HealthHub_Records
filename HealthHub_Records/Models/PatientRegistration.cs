@@ -9,12 +9,12 @@ namespace HealthHub_Records.Models
         [Key]
         public int patientid { get; set; }
 
-        [Display(Name = "Firstname")]
+        [Display(Name = "First Name")]
         [Required(ErrorMessage = "This Field is Required")]
         public string firstname { get; set; }
 
         [Required(ErrorMessage = "This Field is Required")]
-        [Display(Name = "Lastname")]
+        [Display(Name = "Last Name")]
         public string lastname { get; set; }
         [Required(ErrorMessage = "This Field is Required")]
         [Display(Name = "Address")]

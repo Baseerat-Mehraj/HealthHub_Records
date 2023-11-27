@@ -22,6 +22,8 @@ namespace HealthHub_Records.Models
         public DbSet<Appoinment> Appoinment { get; set; }
 
         public DbSet<MedicalDescription> MedicalDescription { get; set; }
+
+      
      
     }
 }

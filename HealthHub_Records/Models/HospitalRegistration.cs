@@ -21,6 +21,8 @@ namespace HealthHub_Records.Models
         public int phoneno { get; set; }
         [Display(Name = "Licience No.")]
         public string licienceno { get; set; }
+
+       
         public int? userid { get; set; }
         [ForeignKey("userid")]
         public virtual Users Users { get; set; }

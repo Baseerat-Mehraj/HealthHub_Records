@@ -4,6 +4,7 @@ using HealthHub_Records.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HealthHub_Records.Migrations
 {
     [DbContext(typeof(HealthhubDbContext))]
-    partial class HealthhubDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231124142806_wert")]
+    partial class wert
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -114,6 +117,9 @@ namespace HealthHub_Records.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Request")
+                        .HasColumnType("bit");
 
                     b.Property<string>("address")
                         .IsRequired()
@@ -324,9 +330,6 @@ namespace HealthHub_Records.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("userid"));
-
-                    b.Property<bool>("Request")
-                        .HasColumnType("bit");
 
                     b.Property<int>("RoleId")
                         .HasColumnType("int");

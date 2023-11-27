@@ -39,6 +39,7 @@ namespace HealthHub.Controllers
                 log.password = obj.password;
                 log.email = obj.email;
                 log.RoleId = 3;
+                
                 db.Users.Add(log);
                 db.SaveChanges();
 
