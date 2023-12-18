@@ -4,6 +4,7 @@ using HealthHub_Records.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HealthHub_Records.Migrations
 {
     [DbContext(typeof(HealthhubDbContext))]
-    partial class HealthhubDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231218100929_new")]
+    partial class @new
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -127,9 +130,9 @@ namespace HealthHub_Records.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("phoneno")
+                    b.Property<int>("phoneno")
                         .HasMaxLength(20)
-                        .HasColumnType("bigint");
+                        .HasColumnType("int");
 
                     b.Property<int>("pincode")
                         .HasColumnType("int");
@@ -271,9 +274,9 @@ namespace HealthHub_Records.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("phoneno")
+                    b.Property<int>("phoneno")
                         .HasMaxLength(20)
-                        .HasColumnType("bigint");
+                        .HasColumnType("int");
 
                     b.Property<string>("state")
                         .IsRequired()
