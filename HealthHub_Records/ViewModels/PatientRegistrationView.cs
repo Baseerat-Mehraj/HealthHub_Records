@@ -20,7 +20,8 @@ namespace HealthHub_Records.ViewModels
         public int pincode { get; set; }
 
         public DateTime dob { get; set; }
-
+        [StringLength(20, ErrorMessage = "{0} must be atleast {2} and at max {1} characters long", MinimumLength = 7)]
+        [RegularExpression(@"[+]+[0-9]{1,3}[- ]+[0-9]{9,}", ErrorMessage = "Invalid phone number format")]
         public int phoneno { get; set; }
 
         public string gender { get; set; }

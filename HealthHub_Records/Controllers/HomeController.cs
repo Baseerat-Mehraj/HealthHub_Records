@@ -103,6 +103,27 @@ namespace HealthHub_Records.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public IActionResult ForgetPassword(ForgetPassword forget)
+        {
+           
+            var result = db.Users.FirstOrDefault(r => r.email==forget.Email);
+            if (result != null)
+            {
+
+                result.password = forget.ConfirmPassword;
+                db.SaveChanges();
+                _notyf.Success("Password Changed Successfully Need to Login Again!");
+                return RedirectToAction("login");
+
+            }
+            else {
+                _notyf.Error("Something went wrong Try again!");
+                return View();
+
+            }
+           
+        }
 
         public IActionResult ChangePassword()
         {

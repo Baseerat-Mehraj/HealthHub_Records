@@ -18,6 +18,8 @@ namespace HealthHub_Records.Models
         [Display(Name = "Pincode")]
         public int pincode { get; set; }
         [Display(Name = "Phone No.")]
+        [StringLength(20, ErrorMessage = "{0} must be atleast {2} and at max {1} characters long", MinimumLength = 7)]
+        [RegularExpression(@"[+]+[0-9]{1,3}[- ]+[0-9]{9,}", ErrorMessage = "Invalid phone number format")]
         public int phoneno { get; set; }
         [Display(Name = "Licience No.")]
         public string licienceno { get; set; }

@@ -51,10 +51,10 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.licienceno)
         </dd>
+        <dt class="col-sm-2">
+            <a asp-controller="Hospital" asp-action="EditHospitalProfile" asp-route-id="@Model?.Hospitalid" class="btn btn-secondary" style="font-size:large">Edit</a>
+        </dt>
       
     </dl>
 </div>
-<div>
-    <a asp-controller="Hospital" asp-action="EditHospitalProfile" asp-route-id="@Model?.Hospitalid" class="btn btn-primary" style="font-size:large">Edit</a>
 
-</div>
