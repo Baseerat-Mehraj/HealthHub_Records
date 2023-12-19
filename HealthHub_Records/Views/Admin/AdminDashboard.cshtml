@@ -1,41 +1,43 @@
-﻿@{
+﻿@inject IHttpContextAccessor acc
+@{
 
     Layout = "_AdminLayout";
-  
 
-    
+
+
+
 }
-<br>
 
-<body style="background-image:url('/images/pdf.png')">
-<div class="row">
-    <div class="col-sm-4">
-        <div class="card text-white bg-dark mb-3" style="max-width: 18rem;text-align:center">
-            <div class="card-header"><h3 style="color:white">Total Patients</h3></div>
-            <div class="card-body">
-                <h1 class="card-title" style="color:white;text-align:center">@ViewBag.TotalPatients</h1>
+    <br>
 
+    <body style="background-image:url('/images/pdf.png')">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="card text-white bg-dark mb-3" style="max-width: 18rem;text-align:center">
+                    <div class="card-header"><h3 style="color:white">Total Patients</h3></div>
+                    <div class="card-body">
+                        <h1 class="card-title" style="color:white;text-align:center">@ViewBag.TotalPatients</h1>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card text-white bg-dark mb-3" style="max-width: 18rem;text-align:center">
+                    <div class="card-header"><h3 style="color:white">Total Hospitals</h3></div>
+                    <div class="card-body">
+                        <h1 class="card-title" style="color:white;text-align:center">@ViewBag.TotalHospitals</h1>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card text-white bg-dark mb-3" style="max-width: 18rem;text-align:center">
+                    <div class="card-header"><h3 style="color:white">Total Requests</h3></div>
+                    <div class="card-body">
+                        <h1 class="card-title" style="color:white;text-align:center">@ViewBag.TotalRequests</h1>
+
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="col-sm-4">
-        <div class="card text-white bg-dark mb-3" style="max-width: 18rem;text-align:center">
-            <div class="card-header"><h3 style="color:white">Total Hospitals</h3></div>
-            <div class="card-body">
-                <h1 class="card-title" style="color:white;text-align:center">@ViewBag.TotalHospitals</h1>
-             
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-4">
-        <div class="card text-white bg-dark mb-3" style="max-width: 18rem;text-align:center">
-            <div class="card-header"><h3 style="color:white">Total Requests</h3></div>
-            <div class="card-body">
-                <h1 class="card-title" style="color:white;text-align:center">@ViewBag.TotalRequests</h1>
-                
-            </div>
-        </div>
-    </div>
-</div>
-</body>
-
+    </body>
