@@ -128,7 +128,6 @@ namespace HealthHub_Records.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<long>("phoneno")
-                        .HasMaxLength(20)
                         .HasColumnType("bigint");
 
                     b.Property<int>("pincode")
@@ -272,7 +271,6 @@ namespace HealthHub_Records.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<long>("phoneno")
-                        .HasMaxLength(20)
                         .HasColumnType("bigint");
 
                     b.Property<string>("state")
@@ -305,7 +303,7 @@ namespace HealthHub_Records.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("title")
+                    b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

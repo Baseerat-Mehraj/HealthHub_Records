@@ -28,8 +28,8 @@ namespace HealthHub_Records.Models
         public DateTime dob { get; set; }
         [Display(Name = "Phone No.")]
 
-        [StringLength(20, ErrorMessage = "{0} must be atleast {2} and at max {1} characters long", MinimumLength = 10)]
-        [RegularExpression(@"[+]+[0-9]{1,3}[- ]+[0-9]{9,}", ErrorMessage = "Invalid phone number format")]
+      
+        
         public long phoneno { get; set; }
         
         [Display(Name = "Gender")]

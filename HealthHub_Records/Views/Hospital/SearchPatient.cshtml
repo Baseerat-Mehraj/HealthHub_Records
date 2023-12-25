@@ -1,8 +1,18 @@
-﻿@model HealthHub_Records.ViewModels.SearchPatientView
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@model HealthHub_Records.ViewModels.SearchPatientView
 
 @{
     Layout = "_HospitalLayout";
     ViewData["Title"] = "SearchPatient";
+    var userId = HttpContextAccessor.HttpContext.Session.GetInt32("UserId");
+
+    @if (!userId.HasValue)
+    {
+        <script>
+            window.location.href = '@Url.Action("Index", "Home")';
+        </script>
+    }
 }
 
 <div class="row">

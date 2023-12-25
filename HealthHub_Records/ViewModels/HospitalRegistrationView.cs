@@ -11,7 +11,7 @@ namespace HealthHub_Records.ViewModels
         public string state { get; set; }
         public string city { get; set; }
         public int pincode { get; set; }
-        public int phoneno { get; set; }
+        public long phoneno { get; set; }
         public string licienceno { get; set; }
         public string username { get; set; }
         public string password { get; set; }

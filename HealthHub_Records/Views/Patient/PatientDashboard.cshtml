@@ -1,6 +1,16 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
 
     Layout = "_PatientLayout";
+    var userId = HttpContextAccessor.HttpContext.Session.GetInt32("UserId");
+
+    @if (!userId.HasValue)
+    {
+        <script>
+            window.location.href = '@Url.Action("Index", "Home")';
+        </script>
+    }
 }
 <body style="background-image:url('/images/pdf.png')">
     <br>

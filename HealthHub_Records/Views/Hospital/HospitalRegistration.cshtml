@@ -1,7 +1,9 @@
-﻿@model HealthHub_Records.ViewModels.HospitalRegistrationView
+﻿
+@model HealthHub_Records.ViewModels.HospitalRegistrationView
 
 @{
     ViewData["Title"] = "Index";
+   
 }
 <form method="post" asp-controller="Hospital" asp-action="HospitalRegistration">
     <section class="h-100 bg-dark">
@@ -61,10 +63,9 @@
                                         <span asp-validation-for="licienceno" class="text-danger"></span>
                                     </div>
 
-
                                     <div class="form-outline mb-4">
-                                        <input type="number" id="form3Example90" class="form-control form-control-lg" asp-for="phoneno" />
-                                        <label class="form-label" asp-for="phoneno">Phone Number</label>
+                                        <input type="number" id="form3Example9" class="form-control form-control-lg" asp-for="phoneno" />
+                                        <label class="form-label" asp-for="phoneno">PhoneNumber</label>
                                     </div>
 
                                     <div class="form-outline mb-4">
@@ -92,6 +93,7 @@
                                     <div class="form-outline mb-4">
                                         <input type="email" id="form3Example97" class="form-control form-control-lg" asp-for="email" />
                                         <label class="form-label" asp-for="email">Email ID</label>
+                                        <span asp-validation-for="email" class="text-danger"></span>
                                     </div>
 
                                     <div class="d-flex justify-content-end pt-3">

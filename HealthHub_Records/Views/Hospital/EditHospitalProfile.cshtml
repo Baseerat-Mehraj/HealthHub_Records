@@ -1,8 +1,18 @@
-﻿@model HealthHub_Records.Models.HospitalRegistration
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@model HealthHub_Records.Models.HospitalRegistration
 
 @{
     Layout = "_HospitalLayout";
     ViewData["Title"] = "EditHospitalProfile";
+    var userId = HttpContextAccessor.HttpContext.Session.GetInt32("UserId");
+
+    @if (!userId.HasValue)
+    {
+        <script>
+            window.location.href = '@Url.Action("Index", "Home")';
+        </script>
+    }
 }
 
 <div class="row" style="font-size:larger">

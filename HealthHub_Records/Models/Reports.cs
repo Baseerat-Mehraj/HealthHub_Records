@@ -10,7 +10,7 @@ namespace HealthHub_Records.Models
 
         public string FileName { get; set; }
 
-        public string title { get; set; }
+        public string Title { get; set; }
 
         [DataType(DataType.Text), Display(Name = "Description")]
         public string Description { get; set; }

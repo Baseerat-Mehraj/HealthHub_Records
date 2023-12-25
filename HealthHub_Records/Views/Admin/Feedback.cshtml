@@ -1,8 +1,18 @@
-﻿@model IEnumerable<HealthHub_Records.Models.Contact>
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@model IEnumerable<HealthHub_Records.Models.Contact>
 
 @{
     Layout = "_AdminLayout";
     ViewData["Title"] = "Feedback";
+    var userId = HttpContextAccessor.HttpContext.Session.GetInt32("UserId");
+
+    @if (!userId.HasValue)
+    {
+        <script>
+            window.location.href = '@Url.Action("Index", "Home")';
+        </script>
+    }
 }
 
 <h3><em>Feedbacks</em></h3>

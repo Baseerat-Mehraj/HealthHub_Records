@@ -1,7 +1,9 @@
-﻿@model HealthHub_Records.ViewModels.PatientRegistrationView
+﻿
+@model HealthHub_Records.ViewModels.PatientRegistrationView
 
 @{
     ViewData["Title"] = "Index";
+    
 }
 <form method="post"  asp-controller="Patient"  asp-action="PatientRegistration">
 
@@ -83,6 +85,7 @@
                                     <div class="form-outline mb-4">
                                         <input type="number" id="form3Example90" class="form-control form-control-lg" asp-for="phoneno" />
                                         <label class="form-label" asp-for="phoneno">Phone Number</label>
+                                        <span asp-validation-for="phoneno" class="text-danger"></span>
                                     </div>
 
                                     <div class="form-outline mb-4">

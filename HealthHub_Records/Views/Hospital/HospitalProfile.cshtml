@@ -1,8 +1,18 @@
-﻿@model HealthHub_Records.Models.HospitalRegistration
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@model HealthHub_Records.Models.HospitalRegistration
 
 @{
     Layout = "_HospitalLayout";
     ViewData["Title"] = "HospitalProfile";
+    var userId = HttpContextAccessor.HttpContext.Session.GetInt32("UserId");
+
+    @if (!userId.HasValue)
+    {
+        <script>
+            window.location.href = '@Url.Action("Index", "Home")';
+        </script>
+    }
 }
 
 <div style="font-size:large; width:790px;padding: 20px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); background-color:lightblue;border-radius: 8px; ">

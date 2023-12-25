@@ -1,9 +1,19 @@
-﻿@model IEnumerable<HealthHub_Records.Models.Reports>
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@model IEnumerable<HealthHub_Records.Models.Reports>
 
 @{
 
     Layout = "_PatientLayout";
     ViewData["Title"] = "ViewReport";
+    var userId = HttpContextAccessor.HttpContext.Session.GetInt32("UserId");
+
+    @if (!userId.HasValue)
+    {
+        <script>
+            window.location.href = '@Url.Action("Index", "Home")';
+        </script>
+    }
 }
 
 <table class="table table-info table-striped">
@@ -13,7 +23,7 @@
                 @Html.DisplayNameFor(model => model.FileName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.title)
+                @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Description)
@@ -29,7 +39,7 @@
                 @Html.DisplayFor(modelItem => item.FileName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.title)
+                @Html.DisplayFor(modelItem => item.Title)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Description)

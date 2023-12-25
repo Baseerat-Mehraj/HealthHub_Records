@@ -38,6 +38,7 @@ namespace HealthHub.Controllers
                 log.password = obj.password;
                 log.email = obj.email;
                 log.RoleId = 2;
+                log.Request = true;
                 db.Users.Add(log);
                 db.SaveChanges();
 
@@ -152,7 +153,7 @@ namespace HealthHub.Controllers
                 Reports fileModel = new Reports();
                 {
                     fileModel.FileName = string.Format("uploads/{0}", fileName);
-                    fileModel.title = pdf.title;
+                    fileModel.Title = pdf.Title;
                     fileModel.Description = pdf.Description;
                     fileModel.userid = userIdd;
 

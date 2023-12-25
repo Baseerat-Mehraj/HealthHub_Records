@@ -1,14 +1,18 @@
-﻿@inject IHttpContextAccessor acc
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
 @{
 
     Layout = "_AdminLayout";
-
-
-
-
+    var userId = HttpContextAccessor.HttpContext.Session.GetInt32("UserId");
+    
+    @if (!userId.HasValue)
+    {
+        <script>
+            window.location.href = '@Url.Action("Index", "Home")';
+        </script>
+    }
 }
-
-    <br>
+ <br>
 
     <body style="background-image:url('/images/pdf.png')">
         <div class="row">

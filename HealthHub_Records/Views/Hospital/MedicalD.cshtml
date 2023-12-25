@@ -1,8 +1,18 @@
-﻿@model HealthHub_Records.Models.MedicalDescription
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@model HealthHub_Records.Models.MedicalDescription
 
 @{
     Layout = "_HospitalLayout";
     ViewData["Title"] = "MedicalD";
+    var userId = HttpContextAccessor.HttpContext.Session.GetInt32("UserId");
+
+    @if (!userId.HasValue)
+    {
+        <script>
+            window.location.href = '@Url.Action("Index", "Home")';
+        </script>
+    }
 }
 
 <h4 style="text-align:center;background-color:gray">Medical Description</h4>
